@@ -15,6 +15,6 @@ Optimal solution for AWS Gameday Ep.6 (Unicorn Rentals) challenge
 - Clone this project inside your EC2 instance `git clone https://github.com/rumd3x/aws-gameday-unicorn.git`
 - Start the service by running `sudo docker-compose up -d --build --force-recreate --scale unicorn=8`
 
-- When the time comes, edit the `Dockerfile` changing the line `ADD ./server /server` to `ADD ./server2 /server`.
+- When the time comes, edit the `Dockerfile` changing the line `ADD ./bins/server /server` to `ADD ./bins/server2 /server`.
 - Stop the services with `sudo docker-compose stop`.
 - Start the services again.
