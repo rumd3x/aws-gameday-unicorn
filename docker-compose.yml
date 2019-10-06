@@ -21,5 +21,6 @@ services:
     image: "containous/whoami"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.unicorn.rule=Host(`unicorn.localhost`)"
+      # - "traefik.http.routers.unicorn.rule=Host(`localhost`)"
       - "traefik.http.routers.unicorn.entrypoints=web"
+      - "traefik.http.routers.unicorn.service=unicorn-ws"
