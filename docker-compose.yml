@@ -16,8 +16,8 @@ services:
 
 
   unicorn:
-    # build: ./
-    image: "containous/whoami"
+    build: ./
+    # image: "containous/whoami"
     networks:
       - load-balancer
     restart: always

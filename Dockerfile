@@ -6,6 +6,8 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=10s --retries=1 CMD curl
 
 ADD ./bins/server /server
 
+RUN chmod +x /server
+
 EXPOSE 80
 
 CMD [ "/server" ]
