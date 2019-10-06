@@ -143,7 +143,3 @@ resource "aws_cloudfront_distribution" "app-cache" {
   }
 
 }
-
-resource "aws_ecr_repository" "unicorn-docker-repo" {
-  name = "unicorn-images"
-}
