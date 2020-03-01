@@ -61,20 +61,10 @@ resource "aws_key_pair" "ssh-key" {
   public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCE2B/Ajo0MB75CtKS14fVAsPN+qTF10v7BKNNwYAdCHT8N+diqEUQltEbBOkdiRaD8+ro4fZQuxYhnJHJKjXfVxwdBU9/yPN/FszVNCSxPgIgBEJ0AocZ3cwEAruTWH4SHhVgmpVhPoBOl+FvR9O2k79SFKO7msOPHt58HghZmRhwBhv65ixIvK9RhbzZPmdPMjDRpvDotvD0ffUNd5GkhWi/JOef2zBTZRKjwsUUYMD3Z76BYLPQFbpKUv2O72BLHM0xcoZG3LubrSOUbKh+G/QosZDy4PBRIC3Ld/WyZgScjGI4/ccVjA5dV+Oq08+3b8Nj1M6lXF2yhqxgRWV1/"
 }
 
-data "aws_ami" "amazon-linux-2" {
-  most_recent = true
-  owners = ["amazon"]
-
-  filter {
-    name   = "name"
-    values = ["amzn2-ami-hvm-*-x86_64-ebs"]
-  }
-}
-
 resource "aws_instance" "app-instance" {
   instance_type   = "t2.micro"
-  ami             = data.aws_ami.amazon-linux-2.id
-  security_groups = ["${aws_security_group.unicorn-sg.id}"]
+  ami             = "ami-07d0cf3af28718ef8"
+  security_groups = [aws_security_group.unicorn-sg.id]
   key_name        = aws_key_pair.ssh-key.key_name
   subnet_id       = module.vpc.public_subnets[0]
 
@@ -82,7 +72,6 @@ resource "aws_instance" "app-instance" {
     Name = "Unicorn-app"
   }
 }
-
 
 resource "aws_cloudfront_distribution" "app-cache" {
   enabled = true
@@ -167,6 +156,6 @@ resource "aws_cloudfront_distribution" "app-cache" {
 
 }
 
-output "cloudfront_doamin" {
+output "cloudfront_domain" {
   value       = aws_cloudfront_distribution.app-cache.domain_name
 }
